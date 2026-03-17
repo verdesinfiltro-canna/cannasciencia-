@@ -53,11 +53,18 @@ h2{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300}
 .card-featured{background:var(--dark3);border:1px solid rgba(201,168,76,.2);grid-column:1/-1}
 .card-featured .card-title{font-size:1.8rem}
 .parts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:rgba(201,168,76,.06);margin-top:1.5rem}
-.part-item{background:var(--dark2);padding:1rem 1.2rem;display:flex;justify-content:space-between;align-items:center;transition:background .3s;cursor:pointer}
+.part-item{background:var(--dark2);padding:1rem 1.2rem;display:flex;justify-content:space-between;align-items:center;transition:background .3s;cursor:pointer;border-bottom:1px solid rgba(201,168,76,.05)}
 .part-item:hover{background:#1a1f19}
+.part-item.open{background:#1a1f19}
 .part-name{font-size:.65rem;color:var(--text);line-height:1.5}
 .part-num{font-size:.55rem;color:var(--text-muted);display:block;margin-bottom:.3rem;letter-spacing:.2em}
+.part-right{display:flex;align-items:center;gap:1rem}
 .dl{color:var(--gold);font-size:.6rem;letter-spacing:.1em;white-space:nowrap}
+.toggle{color:var(--gold);font-size:.9rem;transition:transform .3s;display:inline-block}
+.part-item.open .toggle{transform:rotate(180deg)}
+.part-content{display:none;padding:1.2rem 1.5rem;background:#0e120d;border-bottom:1px solid rgba(201,168,76,.08);font-size:.68rem;color:var(--text-muted);line-height:1.9}
+.part-content.open{display:block}
+.part-content strong{color:var(--green-bright);font-weight:500}
 .resources{display:grid;gap:1px;background:rgba(201,168,76,.08)}
 .res-row{background:var(--dark2);display:grid;grid-template-columns:3rem 1fr auto auto;gap:1.5rem;align-items:center;padding:1.3rem 1.5rem;transition:background .3s;cursor:pointer}
 .res-row:hover{background:var(--dark3)}
@@ -124,14 +131,22 @@ footer{padding:2rem 3rem;border-top:1px solid rgba(201,168,76,.1);display:flex;j
         <span class="badge badge-gold">8 partes</span>
       </div>
       <div class="parts-grid">
-        <div class="part-item"><div><span class="part-num">Parte 01</span><span class="part-name">Taxonom&iacute;a &middot; Reino Plantae</span></div><span class="dl">DOCX</span></div>
-        <div class="part-item"><div><span class="part-num">Parte 02</span><span class="part-name">Magnoliophyta hasta Familia</span></div><span class="dl">DOCX</span></div>
-        <div class="part-item"><div><span class="part-num">Parte 03</span><span class="part-name">G&eacute;nero Cannabis &middot; Debate Taxon&oacute;mico</span></div><span class="dl">DOCX</span></div>
-        <div class="part-item"><div><span class="part-num">Parte 04</span><span class="part-name">Morfolog&iacute;a I &middot; Ra&iacute;ces, Tallos, Hojas</span></div><span class="dl">DOCX</span></div>
-        <div class="part-item"><div><span class="part-num">Parte 05</span><span class="part-name">Morfolog&iacute;a II &middot; Flores, Tricomas, Semillas</span></div><span class="dl">DOCX</span></div>
-        <div class="part-item"><div><span class="part-num">Parte 06</span><span class="part-name">Anatom&iacute;a Microsc&oacute;pica &middot; Tejidos</span></div><span class="dl">DOCX</span></div>
-        <div class="part-item"><div><span class="part-num">Parte 07</span><span class="part-name">Fisiolog&iacute;a Vegetal &middot; Fotos&iacute;ntesis</span></div><span class="dl">DOCX</span></div>
-        <div class="part-item"><div><span class="part-num">Parte 08</span><span class="part-name">Ciclo de Vida &middot; Germinaci&oacute;n a Senescencia</span></div><span class="dl">DOCX</span></div>
+        <div class="part-item" onclick="togglePart(this)"><div><span class="part-num">Parte 01</span><span class="part-name">Taxonom&iacute;a &middot; Reino Plantae</span></div><div class="part-right"><span class="dl">DOCX</span><span class="toggle">&#8964;</span></div></div>
+        <div class="part-content"><strong>Contenido:</strong> Clasificaci&oacute;n taxon&oacute;mica completa desde Reino Plantae. Caracter&iacute;sticas celulares, bioqu&iacute;micas y evolutivas. Posici&oacute;n de Cannabis en el &aacute;rbol de la vida. ~40,000 palabras.</div>
+        <div class="part-item" onclick="togglePart(this)"><div><span class="part-num">Parte 02</span><span class="part-name">Magnoliophyta hasta Familia</span></div><div class="part-right"><span class="dl">DOCX</span><span class="toggle">&#8964;</span></div></div>
+        <div class="part-content"><strong>Contenido:</strong> Divisi&oacute;n Magnoliophyta (Angiospermas), flores verdaderas, doble fertilizaci&oacute;n, tejido vascular. Clase Magnoliopsida, Orden Rosales, Familia Cannabaceae.</div>
+        <div class="part-item" onclick="togglePart(this)"><div><span class="part-num">Parte 03</span><span class="part-name">G&eacute;nero Cannabis &middot; Debate Taxon&oacute;mico</span></div><div class="part-right"><span class="dl">DOCX</span><span class="toggle">&#8964;</span></div></div>
+        <div class="part-content"><strong>Contenido:</strong> Historia y nomenclatura del g&eacute;nero. Descripci&oacute;n original de Linneo (1753). Cannabis indica (Lamarck, 1785), Cannabis ruderalis. Debate monotípico vs polit&iacute;pico. Evidencia molecular y filogenia.</div>
+        <div class="part-item" onclick="togglePart(this)"><div><span class="part-num">Parte 04</span><span class="part-name">Morfolog&iacute;a I &middot; Ra&iacute;ces, Tallos, Hojas</span></div><div class="part-right"><span class="dl">DOCX</span><span class="toggle">&#8964;</span></div></div>
+        <div class="part-content"><strong>Contenido:</strong> Sistema radicular pivotante, anatom&iacute;a de ra&iacute;z primaria, ra&iacute;ces laterales. Tallos: arquitectura a&eacute;rea, soporte, transporte. Nudos, entren udos, ramificaci&oacute;n. Hojas, est&oacute;mas y cut&iacute;cula.</div>
+        <div class="part-item" onclick="togglePart(this)"><div><span class="part-num">Parte 05</span><span class="part-name">Morfolog&iacute;a II &middot; Flores, Tricomas, Semillas</span></div><div class="part-right"><span class="dl">DOCX</span><span class="toggle">&#8964;</span></div></div>
+        <div class="part-content"><strong>Contenido:</strong> Flores masculinas y femeninas (anatom&iacute;a, dimensiones, funci&oacute;n). Tricomas glandulares: bulbosos, capitados s&eacute;siles y con tallo (50-100 &micro;m), cist ol&iacute;ticos. Producci&oacute;n de cannabinoides y terpenos.</div>
+        <div class="part-item" onclick="togglePart(this)"><div><span class="part-num">Parte 06</span><span class="part-name">Anatom&iacute;a Microsc&oacute;pica &middot; Tejidos</span></div><div class="part-right"><span class="dl">DOCX</span><span class="toggle">&#8964;</span></div></div>
+        <div class="part-content"><strong>Contenido:</strong> Tejidos vegetales especializados: merist&eacute;maticos, fundamentales, vasculares y de revestimiento. C&eacute;lulas secretoras, retículo endoplasm&aacute;tico, aparato de Golgi. Microsc op&iacute;a aplicada al cannabis.</div>
+        <div class="part-item" onclick="togglePart(this)"><div><span class="part-num">Parte 07</span><span class="part-name">Fisiolog&iacute;a Vegetal &middot; Fotos&iacute;ntesis</span></div><div class="part-right"><span class="dl">DOCX</span><span class="toggle">&#8964;</span></div></div>
+        <div class="part-content"><strong>Contenido:</strong> Fotos&iacute;ntesis (fase luminosa y oscura), respiraci&oacute;n celular, transpiraci&oacute;n. Sistema hormonal: auxinas, giberelinas, citoquininas, etileno. Transporte xil&eacute;mico y floem&aacute;tico. Respuestas a estr&eacute;s.</div>
+        <div class="part-item" onclick="togglePart(this)"><div><span class="part-num">Parte 08</span><span class="part-name">Ciclo de Vida &middot; Germinaci&oacute;n a Senescencia</span></div><div class="part-right"><span class="dl">DOCX</span><span class="toggle">&#8964;</span></div></div>
+        <div class="part-content"><strong>Contenido:</strong> Germinaci&oacute;n y pl&aacute;ntula. Fase vegetativa y crecimiento. Iniciaci&oacute;n floral y fotoperiodismo. Floraci&oacute;n, polinizaci&oacute;n y fructificaci&oacute;n. Madurez, senescencia y muerte de la planta.</div>
       </div>
     </div>
  
@@ -172,6 +187,13 @@ footer{padding:2rem 3rem;border-top:1px solid rgba(201,168,76,.1);display:flex;j
   <div class="footer-copy">&copy; 2026 &middot; Conocimiento libre para la comunidad</div>
 </footer>
  
+<script>
+function togglePart(el){
+  el.classList.toggle('open');
+  var content = el.nextElementSibling;
+  content.classList.toggle('open');
+}
+</script>
 </body>
 </html>
  
